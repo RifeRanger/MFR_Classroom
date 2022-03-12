@@ -2,23 +2,27 @@ import { Avatar, IconButton, MenuItem, Menu } from "@material-ui/core";
 import { Add, Apps, Menu as MenuIcon } from "@material-ui/icons";
 import React, { useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { useRecoilState } from "recoil";
 import { auth, logout } from "../firebase";
+import { createDialogAtom, joinDialogAtom } from "../utils/atoms";
+import CreateClass from "./CreateClass";
+import JoinClass from "./JoinClass";
 import "./Navbar.css";
 function Navbar() {
   const [user, loading, error] = useAuthState(auth);
   const [anchorEl, setAnchorEl] = useState(null);
-
+  const [createOpened, setCreateOpened] = useRecoilState(createDialogAtom);
+  const [joinOpened, setJoinOpened] = useRecoilState(joinDialogAtom);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
     setAnchorEl(null);
   };
-
   return (
     <>
-      {/* <CreateClass />
-      <JoinClass /> */}
+      <CreateClass />
+      <JoinClass />
       <nav className="navbar">
         <div className="navbar__left">
           <IconButton>
@@ -52,10 +56,20 @@ function Navbar() {
             open={Boolean(anchorEl)}
             onClose={handleClose}
           >
-            <MenuItem>
+            <MenuItem
+              onClick={() => {
+                setCreateOpened(true);
+                handleClose();
+              }}
+            >
               Create Class
             </MenuItem>
-            <MenuItem>
+            <MenuItem
+              onClick={() => {
+                setJoinOpened(true);
+                handleClose();
+              }}
+            >
               Join Class
             </MenuItem>
           </Menu>
