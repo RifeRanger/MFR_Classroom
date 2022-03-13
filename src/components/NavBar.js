@@ -1,6 +1,7 @@
 import { Avatar, IconButton, MenuItem, Menu } from "@material-ui/core";
 import { Add, Apps, Menu as MenuIcon } from "@material-ui/icons";
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useRecoilState } from "recoil";
 import { auth, logout } from "../firebase";
@@ -30,12 +31,16 @@ function Navbar() {
           <IconButton>
             <MenuIcon />
           </IconButton>
-          <img
-            src="/IMG_4250.JPG" width="50" height="50"
-            alt="Mount Fitness Research Classroom"
-            className="navbar__logo"
-          />{" "}
-          <span>Research and Education</span>
+          <Link to='/'>
+            <img
+              src="/IMG_4250.JPG" width="50" height="50"
+              alt="Mount Fitness Research Classroom"
+              className="navbar__logo"
+            />
+          </Link>
+        <div className="navbar_links">
+          <Link to='/Dashboard'> Dashboard</Link>
+        </div>
         </div>
         <div className="navbar__right">
           <IconButton

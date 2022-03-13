@@ -6,14 +6,14 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useHistory, useParams } from "react-router-dom";
-import Announcement from "../components/Announcement";
+import SocialFeed from "../components/SocialFeed";
 import { auth, db } from "../firebase";
 import "./Class.css";
 
 
 function Class() {
   const [classData, setClassData] = useState({});
-  const [announcementContent, setAnnouncementContent] = useState("");
+  const [socialFeedContent, setSocialFeedContent] = useState("");
   const [posts, setPosts] = useState([]);
   const [user, loading, error] = useAuthState(auth);
   const { id } = useParams();
@@ -33,7 +33,7 @@ function Class() {
       let tempPosts = myClassData.posts;
       tempPosts.push({
         authorId: user.uid,
-        content: announcementContent,
+        content: socialFeedContent,
         date: moment().format("MMM Do YY"),
         image: user.photoURL,
         name: user.displayName,
@@ -43,7 +43,7 @@ function Class() {
       });
     } catch (error) {
       console.error(error);
-      alert(`There was an error posting the announcement, please try again!`);
+      alert(`There was an error posting the Social Feed, please try again!`);
     }
   };
 
@@ -72,8 +72,8 @@ function Class() {
         <img src={user?.photoURL} alt="UserPhoto" />
         <input
           type="text"
-          value={announcementContent}
-          onChange={(e) => setAnnouncementContent(e.target.value)}
+          value={socialFeedContent}
+          onChange={(e) => setSocialFeedContent(e.target.value)}
           placeholder="Announce something to your class"
         />
         <IconButton onClick={createPost}>
@@ -81,7 +81,7 @@ function Class() {
         </IconButton>
       </div>
       {posts?.map((post) => (
-        <Announcement
+        <SocialFeed
           authorId={post.authorId}
           content={post.content}
           date={post.date}

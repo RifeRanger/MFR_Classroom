@@ -6,6 +6,8 @@
   justify-content: space-between;
   padding: 0 20px;
   align-items: center;
+  background-color: black;
+  color: white
 }
 .navbar__left {
   display: flex;
@@ -14,4 +16,9 @@
 .navbar__left img {
   margin-right: 20px;
   margin-left: 20px;
+}
+
+.navbar_links {
+  color: white;
+  
 }

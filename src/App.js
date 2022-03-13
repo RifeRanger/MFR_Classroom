@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from './screens/Home';
 import NavBar from './components/NavBar'
 import Dashboard from './screens/Dashboard';
-import Class from './screens/Dashboard';
+import Class from './screens/Class';
 
 function App() {
   return (
@@ -20,7 +20,7 @@ function App() {
           </Route>
           <Route exact path='/class/:id'>
             <NavBar />
-            <Dashboard />
+            <Class />
           </Route>
         </Switch>
       </Router>
