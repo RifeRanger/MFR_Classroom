@@ -14,7 +14,6 @@ import { auth, db } from "../firebase";
 import { createDialogAtom } from "../utils/atoms";
 
 
-
 function CreateClass() {
   const [user, loading, error] = useAuthState(auth);
   const [open, setOpen] = useRecoilState(createDialogAtom);
@@ -32,12 +31,15 @@ function CreateClass() {
         creatorPhoto: user.photoURL,
         posts: [],
       });
+
       const userRef = await db
         .collection("users")
         .where("uid", "==", user.uid)
         .get();
+
       const docId = userRef.docs[0].id;
       const userData = userRef.docs[0].data();
+
       let userClasses = userData.enrolledClassrooms;
       userClasses.push({
         id: newClass.id,
@@ -45,6 +47,7 @@ function CreateClass() {
         creatorName: user.displayName,
         creatorPhoto: user.photoURL,
       });
+
       const docRef = await db.collection("users").doc(docId);
       await docRef.update({
         enrolledClassrooms: userClasses,
@@ -82,7 +85,7 @@ function CreateClass() {
           <Button onClick={handleClose} color="primary">
             Cancel
           </Button>
-          <Button onClick={handleClose} color="primary">
+          <Button onClick={createClass} color="primary">
             Create
           </Button>
         </DialogActions>

@@ -5,6 +5,8 @@ import { auth, db } from "../firebase";
 import { useHistory } from "react-router-dom";
 import { useState } from "react";
 import ClassCard from "../components/ClassCard";
+
+
 function Dashboard() {
   const [user, loading, error] = useAuthState(auth);
   const [classes, setClasses] = useState([]);
@@ -21,14 +23,17 @@ function Dashboard() {
       console.error(error.message);
     }
   };
+
   useEffect(() => {
     if (loading) return;
     if (!user) history.replace("/");
   }, [user, loading]);
+
   useEffect(() => {
     if (loading) return;
     fetchClasses();
   }, [user, loading]);
+
   return (
     <div className="dashboard">
       {classes?.length === 0 ? (
@@ -39,6 +44,7 @@ function Dashboard() {
         <div className="dashboard__classContainer">
           {classes.map((individualClass) => (
             <ClassCard
+              key={individualClass.id}
               creatorName={individualClass.creatorName}
               creatorPhoto={individualClass.creatorPhoto}
               name={individualClass.name}

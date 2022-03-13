@@ -12,6 +12,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { useRecoilState } from "recoil";
 import { auth, db } from "../firebase";
 import { joinDialogAtom } from "../utils/atoms";
+
 function JoinClass() {
   const [open, setOpen] = useRecoilState(joinDialogAtom);
   const [user, loading, error] = useAuthState(auth);
@@ -19,6 +20,7 @@ function JoinClass() {
   const handleClose = () => {
     setOpen(false);
   };
+
   const joinClass = async () => {
     try {
       // check if class exists
@@ -50,6 +52,7 @@ function JoinClass() {
       alert(err.message);
     }
   };
+  
   return (
     <div className="joinClass">
       <Dialog

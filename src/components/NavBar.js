@@ -8,6 +8,8 @@ import { createDialogAtom, joinDialogAtom } from "../utils/atoms";
 import CreateClass from "./CreateClass";
 import JoinClass from "./JoinClass";
 import "./Navbar.css";
+
+
 function Navbar() {
   const [user, loading, error] = useAuthState(auth);
   const [anchorEl, setAnchorEl] = useState(null);
@@ -29,11 +31,11 @@ function Navbar() {
             <MenuIcon />
           </IconButton>
           <img
-            src="https://1000logos.net/wp-content/uploads/2021/05/Google-logo.png"
-            alt="Google Logo"
+            src="/IMG_4250.JPG" width="50" height="50"
+            alt="Mount Fitness Research Classroom"
             className="navbar__logo"
           />{" "}
-          <span>Classroom</span>
+          <span>Research and Education</span>
         </div>
         <div className="navbar__right">
           <IconButton
@@ -43,11 +45,9 @@ function Navbar() {
           >
             <Add />
           </IconButton>
-          <IconButton>
-            <Apps />
-          </IconButton>
           <IconButton onClick={logout}>
             <Avatar src={user?.photoURL} />
+            Logout
           </IconButton>
           <Menu
             id="simple-menu"
