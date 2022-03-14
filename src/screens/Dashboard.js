@@ -4,7 +4,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db } from "../firebase";
 import { useHistory } from "react-router-dom";
 import { useState } from "react";
-import ClassCard from "../components/ClassCard";
+import CourseCard from "../components/CourseCard";
 
 
 function Dashboard() {
@@ -41,17 +41,19 @@ function Dashboard() {
           No classes found! Join or create one!
         </div>
       ) : (
-        <div className="dashboard__classContainer">
-          {classes.map((individualClass) => (
-            <ClassCard
-              key={individualClass.id}
-              creatorName={individualClass.creatorName}
-              creatorPhoto={individualClass.creatorPhoto}
-              name={individualClass.name}
-              id={individualClass.id}
-              style={{ marginRight: 30, marginBottom: 30 }}
-            />
-          ))}
+        <div><h1> My Courses </h1>
+          <div className="dashboard__classContainer">
+            {classes.map((course) => (
+              <CourseCard
+                key={course.id}
+                creatorName={course.creatorName}
+                creatorPhoto={course.creatorPhoto}
+                name={course.name}
+                id={course.id}
+                style={{ marginRight: 30, marginBottom: 30 }}
+              />
+            ))}
+          </div>
         </div>
       )}
     </div>

@@ -26,6 +26,11 @@ function Home() {
         <button className="home__login" onClick={signInWithGoogle}>
           Login with Google
         </button>
+        <hr />
+        <h1>Training</h1>
+        <h1>Education</h1>
+        <h1>Research</h1>
+        <h1>Lectures</h1>
       </div>
     </div>
   )

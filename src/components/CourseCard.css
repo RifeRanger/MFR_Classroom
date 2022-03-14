@@ -1,4 +1,4 @@
-.classCard__upper {
+.courseCard__upper {
   background-color: darkblue;
   height: 90px;
   position: relative;
@@ -6,32 +6,32 @@
   padding: 10px;
   border-bottom: 1px solid #dcdcdc;
 }
-.classCard {
+.courseCard {
   width: 300px;
   border: 1px solid #dcdcdc;
   border-radius: 5px;
   overflow: hidden;
   cursor: pointer;
 }
-.classCard__middle {
+.courseCard__middle {
   height: 190px;
   border-bottom: 1px solid #dcdcdc;
 }
-.classCard__creatorPhoto {
+.courseCard__creatorPhoto {
   position: absolute;
   right: 5px;
   border-radius: 9999px;
 }
-.classCard__className {
+.courseCard__courseName {
   font-weight: 600;
   font-size: 30px;
 }
-.classCard__creatorName {
+.courseCard__creatorName {
   position: absolute;
   bottom: 12px;
   font-size: 15px;
 }
-.classCard__lower {
+.courseCard__lower {
   display: flex;
   flex-direction: row-reverse;
 }

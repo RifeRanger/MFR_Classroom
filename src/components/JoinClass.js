@@ -52,6 +52,11 @@ function JoinClass() {
       alert(err.message);
     }
   };
+
+  const linkStyle = {
+    color: 'white',
+    font: 'bold'
+  }
   
   return (
     <div className="joinClass">

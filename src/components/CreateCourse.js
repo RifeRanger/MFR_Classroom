@@ -14,19 +14,19 @@ import { auth, db } from "../firebase";
 import { createDialogAtom } from "../utils/atoms";
 
 
-function CreateClass() {
+function CreateCourse() {
   const [user, loading, error] = useAuthState(auth);
   const [open, setOpen] = useRecoilState(createDialogAtom);
-  const [className, setClassName] = useState("");
+  const [courseName, setClassName] = useState("");
   const handleClose = () => {
     setOpen(false);
   };
 
-  const createClass = async () => {
+  const createCourse = async () => {
     try {
-      const newClass = await db.collection("classes").add({
+      const newCourse = await db.collection("courses").add({
         creatorUid: user.uid,
-        name: className,
+        name: courseName,
         creatorName: user.displayName,
         creatorPhoto: user.photoURL,
         posts: [],
@@ -40,22 +40,22 @@ function CreateClass() {
       const docId = userRef.docs[0].id;
       const userData = userRef.docs[0].data();
 
-      let userClasses = userData.enrolledClassrooms;
-      userClasses.push({
-        id: newClass.id,
-        name: className,
+      let userCourses = userData.enrolledClassrooms;
+      userCourses.push({
+        id: newCourse.id,
+        name: courseName,
         creatorName: user.displayName,
         creatorPhoto: user.photoURL,
       });
 
       const docRef = await db.collection("users").doc(docId);
       await docRef.update({
-        enrolledClassrooms: userClasses,
+        enrolledClassrooms: userCourses,
       });
       handleClose();
-      alert("Classroom created successfully!");
+      alert("Course created successfully!");
     } catch (err) {
-      alert(`Cannot create class - ${err.message}`);
+      alert(`Cannot create course - ${err.message}`);
     }
   };
 
@@ -66,18 +66,18 @@ function CreateClass() {
         onClose={handleClose}
         aria-labelledby="form-dialog-title"
       >
-        <DialogTitle id="form-dialog-title">Create class</DialogTitle>
+        <DialogTitle id="form-dialog-title">Create Course</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            Enter the name of class and we will create a classroom for you!
+            Enter the name of course and we will create a classroom for you!
           </DialogContentText>
           <TextField
             autoFocus
             margin="dense"
-            label="Class Name"
+            label="Course Name"
             type="text"
             fullWidth
-            value={className}
+            value={courseName}
             onChange={(e) => setClassName(e.target.value)}
           />
         </DialogContent>
@@ -85,7 +85,7 @@ function CreateClass() {
           <Button onClick={handleClose} color="primary">
             Cancel
           </Button>
-          <Button onClick={createClass} color="primary">
+          <Button onClick={createCourse} color="primary">
             Create
           </Button>
         </DialogActions>
@@ -94,4 +94,4 @@ function CreateClass() {
   );
 }
 
-export default CreateClass
+export default CreateCourse

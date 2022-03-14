@@ -48,7 +48,7 @@ function Class() {
   };
 
   useEffect(() => {
-    db.collection("classes")
+    db.collection("courses")
       .doc(id)
       .onSnapshot((snapshot) => {
         const data = snapshot.data();
@@ -74,7 +74,7 @@ function Class() {
           type="text"
           value={socialFeedContent}
           onChange={(e) => setSocialFeedContent(e.target.value)}
-          placeholder="Announce something to your class"
+          placeholder="Enter new updates..."
         />
         <IconButton onClick={createPost}>
           <SendOutlined />

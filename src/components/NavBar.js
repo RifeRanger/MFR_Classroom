@@ -1,12 +1,12 @@
 import { Avatar, IconButton, MenuItem, Menu } from "@material-ui/core";
-import { Add, Apps, Menu as MenuIcon } from "@material-ui/icons";
+import { Add } from "@material-ui/icons";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useRecoilState } from "recoil";
 import { auth, logout } from "../firebase";
 import { createDialogAtom, joinDialogAtom } from "../utils/atoms";
-import CreateClass from "./CreateClass";
+import CreateCourse from "./CreateCourse";
 import JoinClass from "./JoinClass";
 import "./Navbar.css";
 
@@ -22,24 +22,33 @@ function Navbar() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const linkStyle = {
+    color: 'white',
+    textDecoration: 'none',
+    fontWeight: 700,
+    fontSize: 20,
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  }
+
   return (
     <>
-      <CreateClass />
+      <CreateCourse />
       <JoinClass />
       <nav className="navbar">
         <div className="navbar__left">
-          <IconButton>
-            <MenuIcon />
-          </IconButton>
-          <Link to='/'>
+          <Link to='/home'>
             <img
               src="/IMG_4250.JPG" width="50" height="50"
-              alt="Mount Fitness Research Classroom"
+              alt="Mount Fitness Research"
               className="navbar__logo"
             />
           </Link>
         <div className="navbar_links">
-          <Link to='/Dashboard'> Dashboard</Link>
+          <Link to ='/home' style={linkStyle}> Home </Link>
+          <Link to='/dashboard' style={linkStyle}> Dashboard </Link>
+          <Link to='/courses' style={linkStyle}> Courses </Link>
         </div>
         </div>
         <div className="navbar__right">
@@ -67,7 +76,7 @@ function Navbar() {
                 handleClose();
               }}
             >
-              Create Class
+              Create Couse
             </MenuItem>
             <MenuItem
               onClick={() => {

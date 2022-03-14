@@ -5,6 +5,8 @@ import Home from './screens/Home';
 import NavBar from './components/NavBar'
 import Dashboard from './screens/Dashboard';
 import Class from './screens/Class';
+import Courses from './screens/Courses';
+import Main from './screens/Main'
 
 function App() {
   return (
@@ -14,11 +16,19 @@ function App() {
           <Route exact path="/">
             <Home />
           </Route>
+          <Route exact path="/home">
+            <NavBar />
+            <Main />
+          </Route>
           <Route exact path="/dashboard">
             <NavBar />
             <Dashboard />
           </Route>
-          <Route exact path='/class/:id'>
+          <Route exact path="/courses">
+            <NavBar />
+            <Courses />
+          </Route>
+          <Route exact path='/course/:id'>
             <NavBar />
             <Class />
           </Route>
